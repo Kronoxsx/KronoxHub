@@ -1,10 +1,10 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
+   Name = "Kronox Hub",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Rayfield Interface Suite",
-   LoadingSubtitle = "by Sirius",
+   LoadingTitle = "Kronox",
+   LoadingSubtitle = "by Kronox",
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    DisableRayfieldPrompts = false,
@@ -12,8 +12,8 @@ local Window = Rayfield:CreateWindow({
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
+      FolderName = Kronox Hub, -- Create a custom folder for your hub/game
+      FileName = "KronoxConfiguration"
    },
 
    Discord = {
@@ -41,8 +41,6 @@ local Start = false
 local SkipWaves = false
 local AutoRetry = false
 local AutoLeave= false
-
-
 
 local Toggle = MainTab:CreateToggle({
     Name = "Auto Start",
