@@ -12,7 +12,7 @@ local Window = Rayfield:CreateWindow({
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = Kronox Hub, -- Create a custom folder for your hub/game
+      FolderName = "Kronox Hub", -- Create a custom folder for your hub/game
       FileName = "KronoxConfiguration"
    },
 
