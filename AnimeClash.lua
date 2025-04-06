@@ -5,7 +5,7 @@ local Window = Rayfield:CreateWindow({
     LoadingSubtitle = "by Kronox",
     Theme = "Default",
     DisableRayfieldPrompts = false,
-    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+    DisableBuildWarnings = false, 
  
     ConfigurationSaving = {
        Enabled = true,
@@ -14,20 +14,20 @@ local Window = Rayfield:CreateWindow({
     },
  
     Discord = {
-       Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
-       Invite = "k7bJNMxjpz", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+       Enabled = true,
+       Invite = "k7bJNMxjpz",
+       RememberJoins = true
     },
     
-    KeySystem = false, -- Set this to true to use our key system
+    KeySystem = false,
     KeySettings = {
        Title = "KronoxHub",
        Subtitle = "Key System",
-       Note = "Join Discord: https://discord.gg/k7bJNMxjpz", -- Use this to tell the user how to get a key
-       FileName = "KronoxHub", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+       Note = "Join Discord: https://discord.gg/k7bJNMxjpz", 
+       FileName = "KronoxHub", 
+       SaveKey = true, 
+       GrabKeyFromSite = false, 
+       Key = {"KronoxBeta"} 
     }
 })
 
@@ -83,7 +83,7 @@ local Button = MainTab:CreateButton({
     Name = "Teleport to Selected World",
     Callback = function()
         local args = {
-            [1] = selectedWorld -- Uses the selected world value
+            [1] = selectedWorld 
         }
         game:GetService("ReplicatedStorage")
             :WaitForChild("KbG")
@@ -103,12 +103,11 @@ local bossData = {
     {Display = "Awakened Shadow Monarch", Value = "awakened_shadow_monarch"}
 }
 
-local selectedBosses = {bossData[1].Value} -- Start with first boss selected
+local selectedBosses = {bossData[1].Value} 
 local autoAttackEnabled = false
-local attackInterval = 40 -- 1 minute between attacks
-local cycleDuration = 600 -- 10 minutes for full cycle
+local attackInterval = 40 
+local cycleDuration = 600 --full cycle
 
--- Create multi-select dropdown
 local Dropdown = MainTab:CreateDropdown({
     Name = "Select Bosses to Attack",
     Options = {
@@ -132,7 +131,6 @@ local Dropdown = MainTab:CreateDropdown({
     end
 })
 
--- Create auto-attack toggle
 local Toggle = MainTab:CreateToggle({
     Name = "Auto Attack Bosses",
     CurrentValue = false,
@@ -152,13 +150,13 @@ local Toggle = MainTab:CreateToggle({
                         :WaitForChild("3a1fcdd7-87a5-44dc-a4e0-6f3bb90dbdb5")
                         :FireServer(unpack(args))
                     
-                    -- Move to next boss
+
                     currentIndex = currentIndex + 1
                     if currentIndex > #selectedBosses then
                         currentIndex = 1
                     end
                     
-                    -- Check if 10 minutes have passed to reset cycle
+
                     if os.time() - startTime >= cycleDuration then
                         currentIndex = 1
                         startTime = os.time()
@@ -174,7 +172,6 @@ local Toggle = MainTab:CreateToggle({
 
 local currentDragon = dragonNames[1] -- Default to eternal_dragon
 
--- Create dropdown to select dragon type
 local Dropdown = MainTab:CreateDropdown({
     Name = "Select Raid",
     Options = {"Eternal Dragon", "Shadow Dragon"},
@@ -182,12 +179,12 @@ local Dropdown = MainTab:CreateDropdown({
     MultipleOptions = false,
     Flag = "DragonDropdown",
     Callback = function(Option)
-        -- Update current dragon based on selection
+
         currentDragon = Option[1] == "Eternal Dragon" and dragonNames[1] or dragonNames[2]
     end,
 })
 
--- Button to fire the selected dragon
+
 local autoFire = false
 local Toggle = MainTab:CreateToggle({
     Name = "Auto Raid",
@@ -216,7 +213,7 @@ local NotificationToggle = MainTab:CreateToggle({
     CurrentValue = false,    -- Default state
     Flag = "NotificationToggle",
     Callback = function(Value)
-        -- Only [2] changes between true/false, everything else stays identical
+
         game:GetService("ReplicatedStorage"):WaitForChild("KbG")
             :WaitForChild("e562f3c5-093c-4c88-b211-e0b628e2ffdd")
             :FireServer("NOTIFICATIONS_ENABLED", Value)
